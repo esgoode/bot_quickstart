@@ -30,7 +30,7 @@ var hardwareSelection = {
         Price: 1000
     },
     "Surface Go":{
-        Description: "Clam Chowder",
+        Description: "Laptop",
         Price: 1000
     }
 };
