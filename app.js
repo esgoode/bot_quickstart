@@ -78,7 +78,7 @@ bot.dialog('Hardware', [
         session.dialogData.price = results.response;
 
         if (results.response){
-            builder.Prompts.choice(session, "Will you primarily use this device for gaming, work, or art (video editing or graphic design)?", "Work|Gaming|Art", { listStyle: 3 });
+            builder.Prompts.choice(session, "Will you primarily use this device for gaming, work, or art (video editing and graphic design)?", "Work|Gaming|Art", { listStyle: 3 });
         }
     },
     function(session, results) {
