@@ -68,11 +68,12 @@ var high = {
 bot.dialog('Hardware', [
     function(session, results){
         session.send("Awesome - let me ask you a few questions so that we can find the perfect Microsoft Product for you!")
+        session.delay(2500)
         builder.Prompts.number(session, "What is your ideal price?");
     },
     function(session, results, next){
         session.dialogData.price = results.response;
-        session.send("Your ideal price is " + session.dialogData.price)
+
         if (results.response){
             builder.Prompts.choice(session, "Will you primarily use this device for gaming, work, video editing, or graphic design?", "Work|Gaming|Art", { listStyle: 3 });
         }
@@ -87,8 +88,12 @@ bot.dialog('Hardware', [
     function(session, results) {
 
         session.dialogData.features = results.response;
+        
+        session.delay(2500)
 
         session.send("Given your preferences we recommend the followng: ")
+
+        session.delay(2500)
         if(session.dialogData.price < 1000){
             session.send(low[session.dialogData.choice].laptops);
         } else if (session.dialogData.price >= 1000 && session.dialogData.price < 2000){
