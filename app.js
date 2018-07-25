@@ -20,12 +20,8 @@ var savedAddress;
 server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector, [
-    function (session) {
-        builder.Prompts.text(session, "Hello... What's your name?");
-    },
     function (session, results) {
-        session.userData.name = results.response
-        var msg = "Hello " + session.userData.name + ". What product are you interested in? Hardware, Software, or Services"
+        var msg = "Hello! What product are you interested in? Hardware, Software, or Services"
         session.send(msg)
     },
     function (session, results) {
@@ -91,7 +87,8 @@ bot.dialog('Hardware', [
     function(session, results) {
 
         session.dialogData.features = results.response;
-        
+
+        session.send("Given your preferences we recommend the followng: ")
         if(session.dialogData.price < 1000){
             session.send(low[session.dialogData.choice].laptops);
         } else if (session.dialogData.price >= 1000 && session.dialogData.price < 2000){
