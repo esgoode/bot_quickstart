@@ -19,22 +19,6 @@ var connector = new builder.ChatConnector({
 var savedAddress;
 server.post('/api/messages', connector.listen());
 
-//Could probably put pictures more details here etc
-var hardwareSelection = {
-    "Surfacebook": {
-        Description: "Laptop",
-        Price: 1000
-    },
-    "Surface": {
-        Description: "Laptop",
-        Price: 1000
-    },
-    "Surface Go":{
-        Description: "Laptop",
-        Price: 1000
-    }
-};
-
 var bot = new builder.UniversalBot(connector, [
     function (session) {
         builder.Prompts.text(session, "Hello... What's your name?");
@@ -51,37 +35,37 @@ var bot = new builder.UniversalBot(connector, [
 
 var low = {
     "Work": {
-        laptops: "Lenovo"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Gaming": {
-        laptops: "OptionCategory2"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Art": {
-        laptops: "OptionCategory3"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     }
 }
 
 var mid = {
     "Work": {
-        laptops: "Lenovo"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Gaming": {
-        laptops: "OptionCategory2"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Art": {
-        laptops: "OptionCategory3"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     }
 }
 
 var high = {
     "Work": {
-        laptops: "Lenovo"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Gaming": {
-        laptops: "OptionCategory2"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Art": {
-        laptops: "OptionCategory3"
+        laptops: "type1 We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     }
 }
 
@@ -94,11 +78,11 @@ bot.dialog('Hardware', [
         session.dialogData.price = results.response;
         session.send("Your ideal price is " + session.dialogData.price)
         if (results.response){
-            builder.Prompts.choice(session, "Will you primarily use this device for gaming, work, or art?", "Work|Gaming|Art", { listStyle: 3 });
+            builder.Prompts.choice(session, "Will you primarily use this device for gaming, work, video editing, or graphic design?", "Work|Gaming|Art", { listStyle: 3 });
         }
     },
     function(session, results) {
-        session.send("We recommend one of the following")
+
         session.dialogData.choice = results.response.entity;
 
         if(session.dialogData.price < 1000){
