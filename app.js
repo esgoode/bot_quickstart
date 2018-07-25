@@ -85,6 +85,13 @@ bot.dialog('Hardware', [
 
         session.dialogData.choice = results.response.entity;
 
+        builder.Prompts.text(session, "Please list some features you would like in your device");
+
+    },
+    function(session, results) {
+
+        session.dialogData.features = results.response;
+        
         if(session.dialogData.price < 1000){
             session.send(low[session.dialogData.choice].laptops);
         } else if (session.dialogData.price >= 1000 && session.dialogData.price < 2000){
