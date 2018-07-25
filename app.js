@@ -45,19 +45,74 @@ var bot = new builder.UniversalBot(connector, [
         session.send(msg)
     },
     function (session, results) {
-        session.userData.choice = results.response.entity;
-        session.send("Got it... " + session.userData.name + 
-                     " you're looking for " + session.userData.choice + ".");
+        session.endConversation("Have a good day!")
     }
 ]).set('storage', inMemoryStorage);
 
+var low = {
+    "Work": {
+        laptops: "Lenovo"
+    },
+    "Gaming": {
+        laptops: "OptionCategory2"
+    },
+    "Art": {
+        laptops: "OptionCategory3"
+    }
+}
+
+var mid = {
+    "Work": {
+        laptops: "Lenovo"
+    },
+    "Gaming": {
+        laptops: "OptionCategory2"
+    },
+    "Art": {
+        laptops: "OptionCategory3"
+    }
+}
+
+var high = {
+    "Work": {
+        laptops: "Lenovo"
+    },
+    "Gaming": {
+        laptops: "OptionCategory2"
+    },
+    "Art": {
+        laptops: "OptionCategory3"
+    }
+}
+
 bot.dialog('Hardware', [
-    function(session){
-        session.send("Lets checkout Hardware");
-        builder.Prompts.choice(session, "Hardware", hardwareSelection);
+    function(session, results){
+        session.send("Awesome - let me ask you a few questions so that we can find the perfect Microsoft Product for you!")
+        builder.Prompts.number(session, "What is your ideal price?");
+    },
+    function(session, results, next){
+        session.dialogData.price = results.response;
+        session.send("Your ideal price is " + session.dialogData.price)
+        if (results.response){
+            builder.Prompts.choice(session, "Will you primarily use this device for gaming, work, or art?", "Work|Gaming|Art", { listStyle: 3 });
+        }
+    },
+    function(session, results) {
+        session.send("We recommend one of the following")
+        session.dialogData.choice = results.response.entity;
+
+        if(session.dialogData.price < 1000){
+            session.send(low[session.dialogData.choice].laptops);
+        } else if (session.dialogData.price >= 1000 && session.dialogData.price < 2000){
+            session.send(mid[session.dialogData.choice].laptops);
+        } else {
+           session.send(high[session.dialogData.choice].laptops)
+        }
+        session.endConversation("Thank you!")
     }
 ])
 .triggerAction({
     matches: /^hardware$/i,
     confirmPrompt: "This will cancel our chat. Are you sure?"
 });
+
