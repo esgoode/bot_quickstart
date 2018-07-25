@@ -16,37 +16,25 @@ var connector = new builder.ChatConnector({
   appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 
-var savedAddress;
-server.post('/api/messages', connector.listen());
-
-var bot = new builder.UniversalBot(connector, [
-    function (session, results) {
-        var msg = "Hello! What product are you interested in? Hardware, Software, or Services"
-        session.send(msg)
-    },
-    function (session, results) {
-        session.endConversation("-1")
-    }
-]).set('storage', inMemoryStorage);
 
 var low = {
     "Work": {
-        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surface Go | https://i.imgur.com/uOkDGdu.jpg | https://www.microsoft.com/en-us/p/surface-go/8v9dp4lnknsz"
     },
     "Gaming": {
-        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surface Go | https://i.imgur.com/uOkDGdu.jpg | https://www.microsoft.com/en-us/p/surface-go/8v9dp4lnknsz"
     },
     "Art": {
-        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surface Go | https://i.imgur.com/uOkDGdu.jpg | https://www.microsoft.com/en-us/p/surface-go/8v9dp4lnknsz"
     }
 }
 
 var mid = {
     "Work": {
-        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surface Laptop | https://i.imgur.com/ofqOztN.jpg | https://www.microsoft.com/en-us/p/surface-laptop/90fc23dv6snz"
     },
     "Gaming": {
-        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surface Laptop | https://i.imgur.com/ofqOztN.jpg | https://www.microsoft.com/en-us/p/surface-laptop/90fc23dv6snz"
     },
     "Art": {
         laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
@@ -61,9 +49,24 @@ var high = {
         laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Art": {
-        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surface Studio | https://i.imgur.com/VlcLHS5.jpg | https://www.microsoft.com/en-us/surface/devices/surface-studio/overview"
     }
 }
+
+var savedAddress;
+server.post('/api/messages', connector.listen());
+
+var bot = new builder.UniversalBot(connector, [
+    function(session, results, next) {
+        var msg = "Hello! What product are you interested in? Hardware, Software, or Services"
+        builder.Prompts.choice(session, msg)
+    },
+    function(session) {
+        session.endConversation(-1)
+    }
+]).set('storage', inMemoryStorage);
+
+
 
 bot.dialog('Hardware', [
     function(session, results){
@@ -88,7 +91,7 @@ bot.dialog('Hardware', [
     function(session, results) {
 
         session.dialogData.features = results.response;
-        
+
         session.delay(2500)
 
         session.send("Given your preferences we recommend the followng: ")
@@ -109,3 +112,18 @@ bot.dialog('Hardware', [
     confirmPrompt: "This will cancel our chat. Are you sure?"
 });
 
+bot.dialog('Software', [
+    function(session, results){
+        session.send("-1")
+        session.delay(2500)
+    },
+    function(session, results, next){
+        session.dialogData.price = results.response;
+
+        session.endConversation("Thank you!")
+    }
+])
+.triggerAction({
+    matches: /^software|services$/i,
+    confirmPrompt: "This will cancel our chat. Are you sure?"
+});
