@@ -21,9 +21,8 @@ server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector, [
     function (session, results) {
-
         var msg = "Hello! What product are you interested in? Hardware, Software, or Services"
-        session.send(name)
+        session.send(msg)
     },
     function (session, results) {
         session.endConversation("-1")
