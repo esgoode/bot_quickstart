@@ -94,7 +94,7 @@ bot.dialog('Hardware', [
 
         session.delay(2500)
 
-        session.send("Given your preferences we recommend the followng: ")
+        session.send("Given your preferences we recommend the following: ")
 
         session.delay(2500)
         if(session.dialogData.price < 1000){
