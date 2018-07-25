@@ -21,8 +21,9 @@ server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector, [
     function (session, results) {
+
         var msg = "Hello! What product are you interested in? Hardware, Software, or Services"
-        session.send(msg)
+        session.send(name)
     },
     function (session, results) {
         session.endConversation("-1")
@@ -31,37 +32,37 @@ var bot = new builder.UniversalBot(connector, [
 
 var low = {
     "Work": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Gaming": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Art": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     }
 }
 
 var mid = {
     "Work": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Gaming": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Art": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     }
 }
 
 var high = {
     "Work": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Gaming": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     },
     "Art": {
-        laptops: "-2We recommend the Surfacebook 2 | https://imgur.com/a/00MG3Xe | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
+        laptops: "-2We recommend the Surfacebook 2 | https://i.imgur.com/AWSKmjt.jpg | https://www.microsoft.com/en-us/p/surface-book-2/8mcpzjjcc98c"
     }
 }
 
